@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     @IBAction func hideTopRightView(_ sender: Any) {
         if hiddenTopRightView.isHidden == false {
             hiddenTopRightView.isHidden = true
+            hiddenBottomRightView.isHidden = false
         }
         else {
             hiddenTopRightView.isHidden = true
