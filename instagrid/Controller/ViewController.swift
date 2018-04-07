@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var hiddenTopRightView: UIView!
     @IBOutlet weak var hiddenBottomRightView: UIView!
+    @IBOutlet weak var TopLeftImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +24,6 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBOutlet weak var hideTopRightViewButton: UIButton!
-    @IBOutlet weak var hideBottomRightViewButton: UIButton!
-    @IBOutlet weak var defaultViewButton: UIButton!
-    
-    
     @IBAction func hideTopRightView(_ sender: Any) {
         if hiddenTopRightView.isHidden == false {
             hiddenTopRightView.isHidden = true
@@ -57,6 +53,24 @@ class ViewController: UIViewController {
             hiddenTopRightView.isHidden = false
             hiddenBottomRightView.isHidden = false
         }
+    }
+    
+    @IBAction func addPhotoTopLeft(_ sender: Any) {
+        let image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        image.allowsEditing = false
+        self.present(image, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            TopLeftImageView.image = image
+        }
+        else {
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        }
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
