@@ -12,7 +12,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     @IBOutlet weak var hiddenTopRightView: UIView!
     @IBOutlet weak var hiddenBottomRightView: UIView!
-    @IBOutlet weak var TopLeftImageView: UIImageView!
+    @IBOutlet weak var topLeftImageView: UIImageView!
+    @IBOutlet weak var topRightImageView: UIImageView!
+    @IBOutlet weak var bottomLeftImageView: UIImageView!
+    @IBOutlet weak var bottomRightImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,12 +66,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(image, animated: true)
     }
     
+    @IBAction func addPhotoTopRight(_ sender: Any) {
+        let image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        image.allowsEditing = false
+        self.present(image, animated: true)
+    }
+    
+    @IBAction func addPhotoBottomLeft(_ sender: Any) {
+        let image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        image.allowsEditing = false
+        self.present(image, animated: true)
+    }
+    
+    @IBAction func addPhotoBottomRight(_ sender: Any) {
+        let image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        image.allowsEditing = false
+        self.present(image, animated: true)
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            TopLeftImageView.image = image
-        }
-        else {
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            topLeftImageView.image = image
         }
         self.dismiss(animated: true, completion: nil)
     }
