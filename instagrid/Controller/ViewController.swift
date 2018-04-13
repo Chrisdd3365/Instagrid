@@ -19,7 +19,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
     var imagePicked = 0
     
     @IBAction func chooseImage(_ sender: UIButton) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
             imagePicked = sender.tag
             present(imagePicker, animated: true)
         }
@@ -51,7 +51,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        imagePicker.sourceType = .savedPhotosAlbum
+        imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
     }
 
