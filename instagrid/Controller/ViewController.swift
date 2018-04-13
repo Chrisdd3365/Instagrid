@@ -8,10 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController {
 
-    @IBOutlet weak var hiddenTopRightView: UIView!
-    @IBOutlet weak var hiddenBottomRightView: UIView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,38 +19,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-
-    @IBAction func defaultView(_ sender: Any) {
-        if hiddenTopRightView.isHidden == true || hiddenBottomRightView.isHidden == true {
-            hiddenTopRightView.isHidden = false
-            hiddenBottomRightView.isHidden = false
-        }
-        else {
-            hiddenTopRightView.isHidden = false
-            hiddenBottomRightView.isHidden = false
-        }
-    }
-    
-    @IBAction func hiddenBottomRightView(_ sender: Any) {
-        if hiddenBottomRightView.isHidden == false {
-            hiddenBottomRightView.isHidden = true
-            hiddenTopRightView.isHidden = false
-        }
-        else {
-            hiddenBottomRightView.isHidden = true
-        }
-    }
-    
-    @IBAction func hiddenTopRightView(_ sender: Any) {
-        if hiddenTopRightView.isHidden == false {
-            hiddenTopRightView.isHidden = true
-            hiddenBottomRightView.isHidden = false
-        }
-        else {
-            hiddenTopRightView.isHidden = true
-        }
     }
 }
 
