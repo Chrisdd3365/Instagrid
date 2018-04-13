@@ -15,21 +15,18 @@ class GridView: UIView {
     @IBOutlet private var defaultViewButton: UIButton!
     @IBOutlet private var hiddenTopRightViewButton: UIButton!
     @IBOutlet private var hiddenBottomRightViewButton: UIButton!
+    @IBOutlet private var defaultViewButtonSelectedImageView: UIImageView!
+    @IBOutlet private var hiddenBottomRightViewButtonSelectedImageView: UIImageView!
+    @IBOutlet private var hiddenTopRightViewSelectedImageView: UIImageView!
     
-    var pressed = false
-    
-    @IBAction func pressedButton(_ sender: Any) {
-        if !pressed {
-            let image = UIImage(named: "Selected.png") as UIImage!
-            defaultViewButton.setImage(image, for: .normal)
-            pressed = true
-        }
-    }
     
     @IBAction func defaultView(_ sender: Any) {
         if hiddenTopRightView.isHidden == true || hiddenBottomRightView.isHidden == true {
             hiddenTopRightView.isHidden = false
             hiddenBottomRightView.isHidden = false
+            defaultViewButtonSelectedImageView.isHidden = false
+            hiddenBottomRightViewButtonSelectedImageView.isHidden = true
+            hiddenTopRightViewSelectedImageView.isHidden = true
         }
         else {
             hiddenTopRightView.isHidden = false
@@ -41,6 +38,9 @@ class GridView: UIView {
         if hiddenBottomRightView.isHidden == false {
             hiddenBottomRightView.isHidden = true
             hiddenTopRightView.isHidden = false
+            defaultViewButtonSelectedImageView.isHidden = true
+            hiddenBottomRightViewButtonSelectedImageView.isHidden = false
+            hiddenTopRightViewSelectedImageView.isHidden = true
         }
         else {
             hiddenBottomRightView.isHidden = true
@@ -51,6 +51,9 @@ class GridView: UIView {
         if hiddenTopRightView.isHidden == false {
             hiddenTopRightView.isHidden = true
             hiddenBottomRightView.isHidden = false
+            defaultViewButtonSelectedImageView.isHidden = true
+            hiddenBottomRightViewButtonSelectedImageView.isHidden = true
+            hiddenTopRightViewSelectedImageView.isHidden = false
         }
         else {
             hiddenTopRightView.isHidden = true
