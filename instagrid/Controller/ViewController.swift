@@ -40,13 +40,18 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
         if imagePicked == 4 {
             bottomRightImageView.image = pickedImage
         }
-        dismiss(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func swipeToShare(_ sender: UIPanGestureRecognizer) {
+        let image = UIImage()
+        let activity = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil )
+        present(activity, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
