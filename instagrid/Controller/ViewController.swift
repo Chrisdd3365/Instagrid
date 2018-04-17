@@ -8,19 +8,82 @@
 
 import UIKit
 
-class ViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBOutlet weak var topLeftImageView: UIImageView!
-    @IBOutlet weak var topRightImageView: UIImageView!
-    @IBOutlet weak var bottomLeftImageView: UIImageView!
-    @IBOutlet weak var bottomRightImageView: UIImageView!
+    @IBOutlet weak var defaultViewButton: UIButton!
+    @IBOutlet weak var hiddenBottomRightViewButton: UIButton!
+    @IBOutlet weak var hiddenTopRightViewButton: UIButton!
+    
+    @IBOutlet weak var gridView: GridView!
+    
+    @IBAction func defaultView(_ sender: Any) {
+        if gridView.topRightView.isHidden == true || gridView.bottomRightView.isHidden == true {
+            gridView.topRightView.isHidden = false
+            gridView.bottomRightView.isHidden = false
+            
+            defaultViewButton.imageView?.isHidden = false
+            hiddenTopRightViewButton.imageView?.isHidden = true
+            hiddenBottomRightViewButton.imageView?.isHidden = true
+        } else {
+            gridView.topRightView.isHidden = false
+            gridView.bottomRightView.isHidden = false
+        }
+    }
+    
+    @IBAction func hiddenBottomRightView(_ sender: Any) {
+        if gridView.bottomRightView.isHidden == false {
+            gridView.bottomRightView.isHidden = true
+            gridView.topRightView.isHidden = false
+            
+            defaultViewButton.imageView?.isHidden = true
+            hiddenTopRightViewButton.imageView?.isHidden = true
+            
+            if hiddenBottomRightViewButton.currentImage == nil {
+                hiddenBottomRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
+                hiddenBottomRightViewButton.imageView?.isHidden = false
+            } else {
+                hiddenBottomRightViewButton.imageView?.isHidden = true
+            }
+        } else {
+            gridView.bottomRightView.isHidden = true
+            }
+    }
+    
+    @IBAction func hiddenTopRightView(_ sender: Any) {
+        if gridView.topRightView.isHidden == false {
+            gridView.topRightView.isHidden = true
+            gridView.bottomRightView.isHidden = false
+            
+            defaultViewButton.imageView?.isHidden = true
+            hiddenBottomRightViewButton.imageView?.isHidden = true
+            
+            if hiddenTopRightViewButton.currentImage == nil {
+                hiddenTopRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
+                hiddenTopRightViewButton.imageView?.isHidden = false
+            } else {
+                hiddenTopRightViewButton.imageView?.isHidden = true
+            }
+        } else {
+            gridView.topRightView.isHidden = true
+        }
+    }
     
     var imagePicker = UIImagePickerController()
-    var imagePicked = 0
+    var tag = 0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
+        
+        hiddenTopRightViewButton.setImage(nil, for: UIControlState.normal)
+        hiddenBottomRightViewButton.setImage(nil, for: UIControlState.normal)
+    }
     
     @IBAction func chooseImage(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
-            imagePicked = sender.tag
+            tag = sender.tag
             present(imagePicker, animated: true)
         }
     }
@@ -28,17 +91,17 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         
-        if imagePicked == 1 {
-            topLeftImageView.image = pickedImage
+        if tag == 1 {
+            gridView.topLeftImageView.image = pickedImage
         }
-        if imagePicked == 2 {
-            topRightImageView.image = pickedImage
+        if tag == 2 {
+            gridView.topRightImageView.image = pickedImage
         }
-        if imagePicked == 3 {
-            bottomLeftImageView.image = pickedImage
+        if tag == 3 {
+            gridView.bottomLeftImageView.image = pickedImage
         }
-        if imagePicked == 4 {
-            bottomRightImageView.image = pickedImage
+        if tag == 4 {
+            gridView.bottomRightImageView.image = pickedImage
         }
         dismiss(animated: true, completion: nil)
     }
@@ -51,18 +114,6 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
         let image = UIImage()
         let activity = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil )
         present(activity, animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = false
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
