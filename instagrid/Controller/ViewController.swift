@@ -86,9 +86,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
-        
-        hiddenTopRightViewButton.setImage(nil, for: UIControlState.normal)
-        hiddenBottomRightViewButton.setImage(nil, for: UIControlState.normal)
     }
     
     @IBAction func chooseImage(_ sender: UIButton) {
