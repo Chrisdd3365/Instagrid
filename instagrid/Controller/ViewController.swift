@@ -24,6 +24,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             defaultViewButton.imageView?.isHidden = false
             hiddenTopRightViewButton.imageView?.isHidden = true
             hiddenBottomRightViewButton.imageView?.isHidden = true
+            
+            if defaultViewButton.currentImage == nil {
+                defaultViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
+                hiddenBottomRightViewButton.setImage(nil, for: UIControlState.normal)
+                hiddenTopRightViewButton.setImage(nil, for: UIControlState.normal)
+            }
         } else {
             gridView.topRightView.isHidden = false
             gridView.bottomRightView.isHidden = false
@@ -40,8 +46,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             if hiddenBottomRightViewButton.currentImage == nil {
                 hiddenBottomRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
+                hiddenTopRightViewButton.setImage(nil, for: UIControlState.normal)
+                defaultViewButton.setImage(nil, for: UIControlState.normal)
                 hiddenBottomRightViewButton.imageView?.isHidden = false
-            } else {
+                } else {
                 hiddenBottomRightViewButton.imageView?.isHidden = true
             }
         } else {
@@ -59,6 +67,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             if hiddenTopRightViewButton.currentImage == nil {
                 hiddenTopRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
+                hiddenBottomRightViewButton.setImage(nil, for: UIControlState.normal)
+                defaultViewButton.setImage(nil, for: UIControlState.normal)
                 hiddenTopRightViewButton.imageView?.isHidden = false
             } else {
                 hiddenTopRightViewButton.imageView?.isHidden = true
