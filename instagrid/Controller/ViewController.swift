@@ -128,18 +128,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var goingUpAnimation: CGAffineTransform
         goingUpAnimation = CGAffineTransform(translationX: 0, y: -screenHeight)
         
-        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: [], animations: { self.gridView.transform = goingUpAnimation }, completion:nil)
+        UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = goingUpAnimation}, completion: nil)
+        UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = goingUpAnimation }, completion: nil)
         
-        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: [], animations: { self.swipeToShareStackView.transform = goingUpAnimation }, completion:nil)
-
+        activity.completionWithItemsHandler = { (activityType, completed: Bool, returnedItems:[Any]?, error: Error?) in
+            if completed == true {
+                self.showGridView()
+            } else {
+                self.showGridView()
+            }
+        }
     }
     
     private func showGridView() {
+        let screenHeight = UIScreen.main.bounds.height
+        
         gridView.transform = .identity
-        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: [], animations: { self.gridView.transform = .identity }, completion:nil)
+        gridView.transform = CGAffineTransform(translationX: 0, y: -screenHeight)
+        UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = .identity}, completion: nil)
         
         swipeToShareStackView.transform = .identity
-        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: [], animations: { self.swipeToShareStackView.transform = .identity }, completion:nil)
+        swipeToShareStackView.transform = CGAffineTransform(translationX: 0, y: -screenHeight)
+        UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = .identity }, completion: nil)
     }
 }
 
