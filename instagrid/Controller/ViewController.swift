@@ -134,6 +134,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         UIView.animate(withDuration: duration, animations: {
             self.swipeToShareStackView.transform = goingUpAnimation }, completion: nil)
+        
     }
+    
+    private func showGridView() {
+        gridView.transform = .identity
+        
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
+            self.gridView.transform = .identity
+        }, completion:nil)
+        swipeToShareStackView.transform = .identity
+    }
+    
+    
 }
 
