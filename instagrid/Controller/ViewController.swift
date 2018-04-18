@@ -112,8 +112,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func swipeToShare(_ sender: UIPanGestureRecognizer) {
         if gridView.topRightImageView.image == nil || gridView.topLeftImageView.image == nil || gridView.bottomRightImageView.image == nil || gridView.bottomLeftImageView.image == nil {
-            createAlert(title: "Select images", message: "Please choose some images.")
+            createAlert(title: "Select images", message: "Your grid must be full of images")
         } else {
+            if gridView.topRightView.isHidden == true || gridView.bottomRightView.isHidden == true {
+                self.animationGridViewPortraitMode()
+                self.animationGridViewLandscapeMode()
+                self.showUIActivityViewController()
+                print("caca")
+            }
             self.animationGridViewPortraitMode()
             self.animationGridViewLandscapeMode()
             self.showUIActivityViewController()
