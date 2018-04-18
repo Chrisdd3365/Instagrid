@@ -15,19 +15,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var hiddenTopRightViewButton: UIButton!
     
     @IBOutlet weak var gridView: GridView!
+    
     @IBOutlet weak var swipeToShareStackView: UIStackView!
     
     @IBOutlet weak var swipeToShareLabel: UILabel!
+    
     @IBOutlet weak var swipeDirectionImageView: UIImageView!
     
     @IBAction func defaultView(_ sender: Any) {
         if gridView.topRightView.isHidden == true || gridView.bottomRightView.isHidden == true {
+            
             gridView.topRightView.isHidden = false
             gridView.bottomRightView.isHidden = false
-            
-            defaultViewButton.imageView?.isHidden = false
-            hiddenTopRightViewButton.imageView?.isHidden = true
-            hiddenBottomRightViewButton.imageView?.isHidden = true
             
             if defaultViewButton.currentImage == nil {
                 defaultViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
@@ -42,19 +41,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func hiddenBottomRightView(_ sender: Any) {
         if gridView.bottomRightView.isHidden == false {
+            
             gridView.bottomRightView.isHidden = true
             gridView.topRightView.isHidden = false
-            
-            defaultViewButton.imageView?.isHidden = true
-            hiddenTopRightViewButton.imageView?.isHidden = true
             
             if hiddenBottomRightViewButton.currentImage == nil {
                 hiddenBottomRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
                 hiddenTopRightViewButton.setImage(nil, for: UIControlState.normal)
                 defaultViewButton.setImage(nil, for: UIControlState.normal)
-                hiddenBottomRightViewButton.imageView?.isHidden = false
-                } else {
-                hiddenBottomRightViewButton.imageView?.isHidden = true
             }
         } else {
             gridView.bottomRightView.isHidden = true
@@ -63,19 +57,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func hiddenTopRightView(_ sender: Any) {
         if gridView.topRightView.isHidden == false {
+            
             gridView.topRightView.isHidden = true
             gridView.bottomRightView.isHidden = false
-            
-            defaultViewButton.imageView?.isHidden = true
-            hiddenBottomRightViewButton.imageView?.isHidden = true
             
             if hiddenTopRightViewButton.currentImage == nil {
                 hiddenTopRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
                 hiddenBottomRightViewButton.setImage(nil, for: UIControlState.normal)
                 defaultViewButton.setImage(nil, for: UIControlState.normal)
-                hiddenTopRightViewButton.imageView?.isHidden = false
-            } else {
-                hiddenTopRightViewButton.imageView?.isHidden = true
             }
         } else {
             gridView.topRightView.isHidden = true
@@ -85,12 +74,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var imagePicker = UIImagePickerController()
     var tag = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
+        self.changeSwipeLabelAndImage()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
@@ -174,22 +160,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     private func showGridViewLandscapeMode() {
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
-        let screenWidth = UIScreen.main.bounds.width
+            let screenWidth = UIScreen.main.bounds.width
         
-        gridView.transform = .identity
-        gridView.transform = CGAffineTransform(translationX: -screenWidth, y: 0)
-        UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = .identity}, completion: nil)
+            gridView.transform = .identity
+            gridView.transform = CGAffineTransform(translationX: -screenWidth, y: 0)
+            UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = .identity}, completion: nil)
         
-        swipeToShareStackView.transform = .identity
-        swipeToShareStackView.transform = CGAffineTransform(translationX: -screenWidth, y: 0)
-        UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = .identity}, completion: nil)
+            swipeToShareStackView.transform = .identity
+            swipeToShareStackView.transform = CGAffineTransform(translationX: -screenWidth, y: 0)
+            UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = .identity}, completion: nil)
         }
     }
     
-    private func labelChangeSwipeLeft(){
+    func changeSwipeLabelAndImage(){
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
-            swipeToShareLabel.text = "Swipe left to share"
-            swipeDirectionImageView.image = #imageLiteral(resourceName: "Flèche gauche")
+                swipeToShareLabel.text = "Swipe left to share"
+                swipeDirectionImageView.image = #imageLiteral(resourceName: "Flèche gauche")
+            print("j'encule la sncf")
+        }
+        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+            swipeToShareLabel.text = "Swipe up to share"
+            swipeDirectionImageView.image = #imageLiteral(resourceName: "Flèche haut")
+            print("j'encule vner la sncf")
         }
     }
 }
