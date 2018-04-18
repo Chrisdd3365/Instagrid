@@ -76,7 +76,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.changeSwipeLabelAndImage()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
@@ -112,6 +111,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func swipeToShare(_ sender: UIPanGestureRecognizer) {
+        if gridView.topRightImageView.image == nil || gridView.topLeftImageView.image == nil || gridView.bottomRightImageView.image == nil || gridView.bottomLeftImageView.image == nil {
+            createAlert(title: "Select images", message: "Please choose some images.")
+        } else {
+            self.animationGridViewPortraitMode()
+            self.animationGridViewLandscapeMode()
+            self.showUIActivityViewController()
+        }
+    }
+    
+    private func showUIActivityViewController() {
         let image = UIImage()
         let activity = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil)
         present(activity, animated: true, completion: nil)
@@ -124,23 +133,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.showGridViewLandscapeMode()
             }
         }
-        
+    }
+    
+    private func animationGridViewPortraitMode() {
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
             let screenHeight = UIScreen.main.bounds.height
             var goingUpAnimation: CGAffineTransform
             goingUpAnimation = CGAffineTransform(translationX: 0, y: -screenHeight)
-        
-            UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = goingUpAnimation}, completion: nil)
-            UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = goingUpAnimation }, completion: nil)
+            
+            UIView.animate(withDuration: 0.4, animations: { self.gridView.transform = goingUpAnimation}, completion: nil)
+            UIView.animate(withDuration: 0.4, animations: { self.swipeToShareStackView.transform = goingUpAnimation }, completion: nil)
         }
-        
+    }
+    
+    private func animationGridViewLandscapeMode() {
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
             let screenWidth = UIScreen.main.bounds.width
             var goingLeftAnimation: CGAffineTransform
             goingLeftAnimation = CGAffineTransform(translationX: -screenWidth, y: 0)
-        
-            UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = goingLeftAnimation}, completion: nil)
-            UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = goingLeftAnimation }, completion: nil)
+            
+            UIView.animate(withDuration: 0.4, animations: { self.gridView.transform = goingLeftAnimation}, completion: nil)
+            UIView.animate(withDuration: 0.4, animations: { self.swipeToShareStackView.transform = goingLeftAnimation }, completion: nil)
         }
     }
     
@@ -150,11 +163,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
             gridView.transform = .identity
             gridView.transform = CGAffineTransform(translationX: 0, y: -screenHeight)
-            UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = .identity}, completion: nil)
+            UIView.animate(withDuration: 0.4, animations: { self.gridView.transform = .identity}, completion: nil)
         
             swipeToShareStackView.transform = .identity
             swipeToShareStackView.transform = CGAffineTransform(translationX: 0, y: -screenHeight)
-            UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = .identity }, completion: nil)
+            UIView.animate(withDuration: 0.4, animations: { self.swipeToShareStackView.transform = .identity }, completion: nil)
         }
     }
     
@@ -164,24 +177,30 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
             gridView.transform = .identity
             gridView.transform = CGAffineTransform(translationX: -screenWidth, y: 0)
-            UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = .identity}, completion: nil)
+            UIView.animate(withDuration: 0.4, animations: { self.gridView.transform = .identity}, completion: nil)
         
             swipeToShareStackView.transform = .identity
             swipeToShareStackView.transform = CGAffineTransform(translationX: -screenWidth, y: 0)
-            UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = .identity}, completion: nil)
+            UIView.animate(withDuration: 0.4, animations: { self.swipeToShareStackView.transform = .identity}, completion: nil)
         }
+    }
+   
+    func createAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil) }))
+        self.present(alert, animated: true, completion: nil )
     }
     
     func changeSwipeLabelAndImage(){
-        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
-                swipeToShareLabel.text = "Swipe left to share"
-                swipeDirectionImageView.image = #imageLiteral(resourceName: "Flèche gauche")
-            print("j'encule la sncf")
-        }
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
             swipeToShareLabel.text = "Swipe up to share"
             swipeDirectionImageView.image = #imageLiteral(resourceName: "Flèche haut")
-            print("j'encule vner la sncf")
+        }
+        
+        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+                swipeToShareLabel.text = "Swipe left to share"
+                swipeDirectionImageView.image = #imageLiteral(resourceName: "Flèche gauche")
         }
     }
 }
