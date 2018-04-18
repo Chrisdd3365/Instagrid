@@ -111,15 +111,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func swipeToShare(_ sender: UIPanGestureRecognizer) {
-        if gridView.topRightImageView.image == nil || gridView.topLeftImageView.image == nil || gridView.bottomRightImageView.image == nil || gridView.bottomLeftImageView.image == nil {
+        if gridView.topRightView.isHidden == true && gridView.topLeftImageView.image != nil && gridView.bottomLeftImageView.image != nil && gridView.bottomRightImageView.image != nil || gridView.bottomRightView.isHidden == true && gridView.bottomLeftImageView.image != nil && gridView.topLeftImageView.image != nil && gridView.topRightImageView.image != nil {
+            self.animationGridViewPortraitMode()
+            self.animationGridViewLandscapeMode()
+            self.showUIActivityViewController()
+        }
+        if gridView.topRightImageView.image == nil || gridView.topLeftImageView.image == nil || gridView.bottomLeftImageView.image == nil || gridView.bottomRightImageView.image == nil  {
             createAlert(title: "Select images", message: "Your grid must be full of images")
         } else {
-            if gridView.topRightView.isHidden == true || gridView.bottomRightView.isHidden == true {
-                self.animationGridViewPortraitMode()
-                self.animationGridViewLandscapeMode()
-                self.showUIActivityViewController()
-                print("caca")
-            }
             self.animationGridViewPortraitMode()
             self.animationGridViewLandscapeMode()
             self.showUIActivityViewController()
