@@ -121,31 +121,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func swipeToShare(_ sender: UIPanGestureRecognizer) {
         let image = UIImage()
-        let activity = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil )
+        let activity = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil)
         present(activity, animated: true, completion: nil)
         
-        let duration = 1.0
         let screenHeight = UIScreen.main.bounds.height
         var goingUpAnimation: CGAffineTransform
         goingUpAnimation = CGAffineTransform(translationX: 0, y: -screenHeight)
         
-        UIView.animate(withDuration: duration, animations: {
-            self.gridView.transform = goingUpAnimation }, completion: nil)
+        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: [], animations: { self.gridView.transform = goingUpAnimation }, completion:nil)
         
-        UIView.animate(withDuration: duration, animations: {
-            self.swipeToShareStackView.transform = goingUpAnimation }, completion: nil)
-        
+        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: [], animations: { self.swipeToShareStackView.transform = goingUpAnimation }, completion:nil)
+
     }
     
     private func showGridView() {
         gridView.transform = .identity
+        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: [], animations: { self.gridView.transform = .identity }, completion:nil)
         
-        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
-            self.gridView.transform = .identity
-        }, completion:nil)
         swipeToShareStackView.transform = .identity
+        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: [], animations: { self.swipeToShareStackView.transform = .identity }, completion:nil)
     }
-    
-    
 }
 

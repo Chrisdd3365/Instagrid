@@ -181,11 +181,10 @@
                                     <outlet property="topLeftImageView" destination="7HO-IH-6D8" id="ZeT-hw-URt"/>
                                     <outlet property="topRightImageView" destination="BUe-CD-wH1" id="npS-2n-MfQ"/>
                                     <outlet property="topRightView" destination="0zv-ol-qwt" id="h0j-bO-1b2"/>
-                                    <outletCollection property="gestureRecognizers" destination="o9L-S5-rO5" appends="YES" id="PmH-gG-dcO"/>
                                 </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nlb-JO-KtS">
-                                <rect key="frame" x="71.5" y="83.5" width="178" height="46"/>
+                                <rect key="frame" x="72" y="83.5" width="178" height="46"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flèche haut" translatesAutoresizingMaskIntoConstraints="NO" id="51E-3i-YhB">
                                         <rect key="frame" x="81.5" y="0.0" width="15" height="10"/>
