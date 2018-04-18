@@ -15,6 +15,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var hiddenTopRightViewButton: UIButton!
     
     @IBOutlet weak var gridView: GridView!
+    @IBOutlet weak var swipeToShareStackView: UIStackView!
+    
     
     @IBAction func defaultView(_ sender: Any) {
         if gridView.topRightView.isHidden == true || gridView.bottomRightView.isHidden == true {
@@ -121,6 +123,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let image = UIImage()
         let activity = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil )
         present(activity, animated: true, completion: nil)
+        
+        let duration = 1.0
+        let screenHeight = UIScreen.main.bounds.height
+        var goingUpAnimation: CGAffineTransform
+        goingUpAnimation = CGAffineTransform(translationX: 0, y: -screenHeight)
+        
+        UIView.animate(withDuration: duration, animations: {
+            self.gridView.transform = goingUpAnimation }, completion: nil)
+        
+        UIView.animate(withDuration: duration, animations: {
+            self.swipeToShareStackView.transform = goingUpAnimation }, completion: nil)
     }
 }
 

@@ -156,6 +156,7 @@
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.062745098039215685" green="0.40000000000000002" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="4g0-lx-X0u" firstAttribute="leading" secondItem="zhF-pQ-PzB" secondAttribute="leading" constant="15" id="3Mv-Lb-tPO"/>
                                     <constraint firstAttribute="bottom" secondItem="4g0-lx-X0u" secondAttribute="bottom" constant="15" id="DWJ-Tt-QS3"/>
@@ -180,6 +181,7 @@
                                     <outlet property="topLeftImageView" destination="7HO-IH-6D8" id="ZeT-hw-URt"/>
                                     <outlet property="topRightImageView" destination="BUe-CD-wH1" id="npS-2n-MfQ"/>
                                     <outlet property="topRightView" destination="0zv-ol-qwt" id="h0j-bO-1b2"/>
+                                    <outletCollection property="gestureRecognizers" destination="o9L-S5-rO5" appends="YES" id="PmH-gG-dcO"/>
                                 </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nlb-JO-KtS">
@@ -197,7 +199,7 @@
                                 </subviews>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="K7f-Ay-uwO" appends="YES" id="J6K-6H-sAn"/>
+                                    <outletCollection property="gestureRecognizers" destination="o9L-S5-rO5" appends="YES" id="4RG-b9-BwE"/>
                                 </connections>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GpU-8C-bdf">
@@ -287,12 +289,13 @@
                         <outlet property="gridView" destination="zhF-pQ-PzB" id="8fS-dV-b7T"/>
                         <outlet property="hiddenBottomRightViewButton" destination="I8v-YJ-hYD" id="iLz-Rb-8O6"/>
                         <outlet property="hiddenTopRightViewButton" destination="4bE-L0-06R" id="jwd-yR-pJs"/>
+                        <outlet property="swipeToShareStackView" destination="nlb-JO-KtS" id="Ihf-ED-J7K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="K7f-Ay-uwO">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="o9L-S5-rO5">
                     <connections>
-                        <action selector="swipeToShare:" destination="BYZ-38-t0r" id="Ecm-BM-Jbm"/>
+                        <action selector="swipeToShare:" destination="BYZ-38-t0r" id="pDN-He-uaK"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>
