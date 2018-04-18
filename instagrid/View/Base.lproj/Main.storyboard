@@ -288,6 +288,8 @@
                         <outlet property="gridView" destination="zhF-pQ-PzB" id="8fS-dV-b7T"/>
                         <outlet property="hiddenBottomRightViewButton" destination="I8v-YJ-hYD" id="iLz-Rb-8O6"/>
                         <outlet property="hiddenTopRightViewButton" destination="4bE-L0-06R" id="jwd-yR-pJs"/>
+                        <outlet property="swipeDirectionImageView" destination="51E-3i-YhB" id="cVf-Q9-x5S"/>
+                        <outlet property="swipeToShareLabel" destination="dfq-xj-iAu" id="kJ3-od-aN7"/>
                         <outlet property="swipeToShareStackView" destination="nlb-JO-KtS" id="Ihf-ED-J7K"/>
                     </connections>
                 </viewController>

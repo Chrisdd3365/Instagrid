@@ -17,6 +17,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var gridView: GridView!
     @IBOutlet weak var swipeToShareStackView: UIStackView!
     
+    @IBOutlet weak var swipeToShareLabel: UILabel!
+    @IBOutlet weak var swipeDirectionImageView: UIImageView!
     
     @IBAction func defaultView(_ sender: Any) {
         if gridView.topRightView.isHidden == true || gridView.bottomRightView.isHidden == true {
@@ -87,7 +89,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: Selector(("rotated")), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        
         
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
@@ -130,38 +132,48 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         activity.completionWithItemsHandler = { (activityType, completed: Bool, returnedItems:[Any]?, error: Error?) in
             if completed == true {
                 self.showGridViewPortraitMode()
+                self.showGridViewLandscapeMode()
             } else {
                 self.showGridViewPortraitMode()
+                self.showGridViewLandscapeMode()
             }
         }
         
-        let screenHeight = UIScreen.main.bounds.height
-        var goingUpAnimation: CGAffineTransform
-        goingUpAnimation = CGAffineTransform(translationX: 0, y: -screenHeight)
+        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+            let screenHeight = UIScreen.main.bounds.height
+            var goingUpAnimation: CGAffineTransform
+            goingUpAnimation = CGAffineTransform(translationX: 0, y: -screenHeight)
         
-        UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = goingUpAnimation}, completion: nil)
-        UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = goingUpAnimation }, completion: nil)
+            UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = goingUpAnimation}, completion: nil)
+            UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = goingUpAnimation }, completion: nil)
+        }
         
-        let screenWidth = UIScreen.main.bounds.width
-        var goingLeftAnimation: CGAffineTransform
-        goingLeftAnimation = CGAffineTransform(translationX: -screenWidth, y: 0)
+        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+            let screenWidth = UIScreen.main.bounds.width
+            var goingLeftAnimation: CGAffineTransform
+            goingLeftAnimation = CGAffineTransform(translationX: -screenWidth, y: 0)
         
-        UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = goingLeftAnimation}, completion: nil)
-        UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = goingLeftAnimation }, completion: nil)
+            UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = goingLeftAnimation}, completion: nil)
+            UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = goingLeftAnimation }, completion: nil)
+        }
     }
     
     private func showGridViewPortraitMode() {
-        let screenHeight = UIScreen.main.bounds.height
+        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+            let screenHeight = UIScreen.main.bounds.height
         
-        gridView.transform = .identity
-        gridView.transform = CGAffineTransform(translationX: 0, y: -screenHeight)
-        UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = .identity}, completion: nil)
+            gridView.transform = .identity
+            gridView.transform = CGAffineTransform(translationX: 0, y: -screenHeight)
+            UIView.animate(withDuration: 0.7, animations: { self.gridView.transform = .identity}, completion: nil)
         
-        swipeToShareStackView.transform = .identity
-        swipeToShareStackView.transform = CGAffineTransform(translationX: 0, y: -screenHeight)
-        UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = .identity }, completion: nil)
-        
-        
+            swipeToShareStackView.transform = .identity
+            swipeToShareStackView.transform = CGAffineTransform(translationX: 0, y: -screenHeight)
+            UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = .identity }, completion: nil)
+        }
+    }
+    
+    private func showGridViewLandscapeMode() {
+        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
         let screenWidth = UIScreen.main.bounds.width
         
         gridView.transform = .identity
@@ -170,19 +182,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         swipeToShareStackView.transform = .identity
         swipeToShareStackView.transform = CGAffineTransform(translationX: -screenWidth, y: 0)
-        
         UIView.animate(withDuration: 0.7, animations: { self.swipeToShareStackView.transform = .identity}, completion: nil)
-    }
-    
-    private func labelChangeSwipeLeft(){
-        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation)
-        {
-            print("landscape")
-            label.hidden = true
         }
     }
     
-    
-    
+    private func labelChangeSwipeLeft(){
+        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+            swipeToShareLabel.text = "Swipe left to share"
+            swipeDirectionImageView.image = #imageLiteral(resourceName: "Flèche gauche")
+        }
+    }
 }
 
