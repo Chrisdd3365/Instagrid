@@ -117,7 +117,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.showUIActivityViewController()
         }
         if gridView.topRightImageView.image == nil || gridView.topLeftImageView.image == nil || gridView.bottomLeftImageView.image == nil || gridView.bottomRightImageView.image == nil  {
-            createAlert(title: "Select images", message: "Your grid must be full of images")
+            createAlert(title: "Choose your photos", message: "Your grid must be full of photos")
         } else {
             self.animationGridViewPortraitMode()
             self.animationGridViewLandscapeMode()
@@ -190,7 +190,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
    
-    func createAlert(title: String, message: String) {
+    private func createAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil) }))
