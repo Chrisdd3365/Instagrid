@@ -184,7 +184,7 @@
                                 </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nlb-JO-KtS">
-                                <rect key="frame" x="92.5" y="84.5" width="135.5" height="44.5"/>
+                                <rect key="frame" x="93" y="84.5" width="135.5" height="44.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flèche haut" translatesAutoresizingMaskIntoConstraints="NO" id="51E-3i-YhB">
                                         <rect key="frame" x="60.5" y="0.0" width="15" height="10"/>
@@ -250,6 +250,9 @@
                                         <exclude reference="BNN-wK-Lm3"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="resetGrid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="86R-zc-TfI"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.71764705880000002" green="0.84313725490000002" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -289,12 +292,12 @@
                                 <exclude reference="1wd-pR-OfU"/>
                                 <exclude reference="nk9-ot-iPr"/>
                                 <exclude reference="upg-u5-BFZ"/>
-                                <exclude reference="HJF-Ju-JFs"/>
-                                <exclude reference="k69-iS-Phe"/>
                                 <exclude reference="13r-ov-tzr"/>
                                 <exclude reference="VqZ-k0-vTs"/>
                                 <exclude reference="cnz-Rv-S10"/>
                                 <exclude reference="qDC-7O-IB2"/>
+                                <exclude reference="HJF-Ju-JFs"/>
+                                <exclude reference="k69-iS-Phe"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -311,15 +314,15 @@
                                 <include reference="upg-u5-BFZ"/>
                                 <exclude reference="xx7-GF-NUq"/>
                                 <exclude reference="yqI-QK-UE6"/>
-                                <exclude reference="EgV-Fi-Gt6"/>
-                                <include reference="HJF-Ju-JFs"/>
-                                <include reference="k69-iS-Phe"/>
-                                <exclude reference="yar-IE-DGw"/>
                                 <include reference="13r-ov-tzr"/>
                                 <exclude reference="2Te-7W-IiB"/>
                                 <exclude reference="VqZ-k0-vTs"/>
                                 <include reference="cnz-Rv-S10"/>
                                 <exclude reference="qDC-7O-IB2"/>
+                                <exclude reference="EgV-Fi-Gt6"/>
+                                <include reference="HJF-Ju-JFs"/>
+                                <include reference="k69-iS-Phe"/>
+                                <exclude reference="yar-IE-DGw"/>
                             </mask>
                         </variation>
                     </view>

@@ -125,6 +125,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    @IBAction func resetGrid(_ sender: Any) {
+        gridView.topLeftImageView.image = nil
+        gridView.topRightImageView.image = nil
+        gridView.bottomLeftImageView.image = nil
+        gridView.bottomRightImageView.image = nil
+    }
+    
     private func showUIActivityViewController() {
         let image = UIImage()
         let activity = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil)
