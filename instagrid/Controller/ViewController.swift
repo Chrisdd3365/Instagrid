@@ -24,10 +24,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func defaultView(_ sender: Any) {
         if gridView.topRightView.isHidden == true || gridView.bottomRightView.isHidden == true {
-            
             gridView.topRightView.isHidden = false
             gridView.bottomRightView.isHidden = false
-            
            self.selectedImageDefaultViewButton()
         } else {
             gridView.topRightView.isHidden = false
@@ -37,10 +35,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func hiddenBottomRightView(_ sender: Any) {
         if gridView.bottomRightView.isHidden == false {
-            
             gridView.bottomRightView.isHidden = true
             gridView.topRightView.isHidden = false
-            
             self.selectedImageHiddenBottomRightView()
         } else {
             gridView.bottomRightView.isHidden = true
@@ -49,10 +45,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func hiddenTopRightView(_ sender: Any) {
         if gridView.topRightView.isHidden == false {
-            
             gridView.topRightView.isHidden = true
             gridView.bottomRightView.isHidden = false
-            
             self.selectedImageHiddenTopRightView()
         } else {
             gridView.topRightView.isHidden = true
