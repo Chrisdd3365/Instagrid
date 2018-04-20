@@ -28,11 +28,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             gridView.topRightView.isHidden = false
             gridView.bottomRightView.isHidden = false
             
-            if defaultViewButton.currentImage == nil {
-                defaultViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
-                hiddenBottomRightViewButton.setImage(nil, for: UIControlState.normal)
-                hiddenTopRightViewButton.setImage(nil, for: UIControlState.normal)
-            }
+           self.selectedImageDefaultViewButton()
         } else {
             gridView.topRightView.isHidden = false
             gridView.bottomRightView.isHidden = false
@@ -45,11 +41,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             gridView.bottomRightView.isHidden = true
             gridView.topRightView.isHidden = false
             
-            if hiddenBottomRightViewButton.currentImage == nil {
-                hiddenBottomRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
-                hiddenTopRightViewButton.setImage(nil, for: UIControlState.normal)
-                defaultViewButton.setImage(nil, for: UIControlState.normal)
-            }
+            self.selectedImageHiddenBottomRightView()
         } else {
             gridView.bottomRightView.isHidden = true
             }
@@ -61,13 +53,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             gridView.topRightView.isHidden = true
             gridView.bottomRightView.isHidden = false
             
-            if hiddenTopRightViewButton.currentImage == nil {
-                hiddenTopRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
-                hiddenBottomRightViewButton.setImage(nil, for: UIControlState.normal)
-                defaultViewButton.setImage(nil, for: UIControlState.normal)
-            }
+            self.selectedImageHiddenTopRightView()
         } else {
             gridView.topRightView.isHidden = true
+        }
+    }
+    
+    private func selectedImageDefaultViewButton() {
+        if defaultViewButton.currentImage == nil {
+            defaultViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
+            hiddenBottomRightViewButton.setImage(nil, for: UIControlState.normal)
+            hiddenTopRightViewButton.setImage(nil, for: UIControlState.normal)
+        }
+    }
+    
+    private func selectedImageHiddenBottomRightView() {
+        if hiddenBottomRightViewButton.currentImage == nil {
+            hiddenBottomRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
+            hiddenTopRightViewButton.setImage(nil, for: UIControlState.normal)
+            defaultViewButton.setImage(nil, for: UIControlState.normal)
+        }
+    }
+    
+    private func selectedImageHiddenTopRightView() {
+        if hiddenTopRightViewButton.currentImage == nil {
+            hiddenTopRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
+            hiddenBottomRightViewButton.setImage(nil, for: UIControlState.normal)
+            defaultViewButton.setImage(nil, for: UIControlState.normal)
         }
     }
     
@@ -117,7 +129,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.showUIActivityViewController()
         }
         if gridView.topRightImageView.image == nil || gridView.topLeftImageView.image == nil || gridView.bottomLeftImageView.image == nil || gridView.bottomRightImageView.image == nil  {
-            createAlert(title: "Choose your photos", message: "Your grid must be full of photos")
+            createAlertGridNotFull(title: "Choose your photos", message: "Your grid must be full of photos")
         } else {
             self.animationGridViewPortraitMode()
             self.animationGridViewLandscapeMode()
@@ -197,14 +209,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
    
-    private func createAlert(title: String, message: String) {
+    private func createAlertGridNotFull(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil) }))
         self.present(alert, animated: true, completion: nil )
     }
     
-    func changeSwipeLabelAndImage(){
+    private func changeSwipeLabelAndImage(){
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
             swipeToShareLabel.text = "Swipe up to share"
             swipeDirectionImageView.image = #imageLiteral(resourceName: "Flèche haut")
