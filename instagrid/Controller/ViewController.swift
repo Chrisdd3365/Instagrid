@@ -88,6 +88,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.changeSwipeLabelAndImage), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
@@ -216,7 +217,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(alert, animated: true, completion: nil )
     }
     
-    private func changeSwipeLabelAndImage(){
+    @objc private func changeSwipeLabelAndImage(){
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
             swipeToShareLabel.text = "Swipe up to share"
             swipeDirectionImageView.image = #imageLiteral(resourceName: "Flèche haut")
