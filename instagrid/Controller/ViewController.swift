@@ -23,34 +23,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var swipeDirectionImageView: UIImageView!
     
     @IBAction func defaultView(_ sender: Any) {
-        if gridView.topRightView.isHidden == true || gridView.bottomRightView.isHidden == true {
-            gridView.topRightView.isHidden = false
-            gridView.bottomRightView.isHidden = false
-           self.selectedImageDefaultViewButton()
-        } else {
-            gridView.topRightView.isHidden = false
-            gridView.bottomRightView.isHidden = false
-        }
+        gridView.defaultView()
+        selectedImageDefaultViewButton()
     }
     
     @IBAction func hiddenBottomRightView(_ sender: Any) {
-        if gridView.bottomRightView.isHidden == false {
-            gridView.bottomRightView.isHidden = true
-            gridView.topRightView.isHidden = false
-            self.selectedImageHiddenBottomRightView()
-        } else {
-            gridView.bottomRightView.isHidden = true
-            }
+        gridView.hiddenBottomRightView()
+        selectedImageHiddenBottomRightView()
     }
     
     @IBAction func hiddenTopRightView(_ sender: Any) {
-        if gridView.topRightView.isHidden == false {
-            gridView.topRightView.isHidden = true
-            gridView.bottomRightView.isHidden = false
-            self.selectedImageHiddenTopRightView()
-        } else {
-            gridView.topRightView.isHidden = true
-        }
+        gridView.hiddenTopRightView()
+        selectedImageHiddenTopRightView()
     }
     
     private func selectedImageDefaultViewButton() {
@@ -133,10 +117,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func resetGrid(_ sender: Any) {
-        gridView.topLeftImageView.image = nil
-        gridView.topRightImageView.image = nil
-        gridView.bottomLeftImageView.image = nil
-        gridView.bottomRightImageView.image = nil
+        gridView.resetGrid()
     }
     
     private func showUIActivityViewController() {
