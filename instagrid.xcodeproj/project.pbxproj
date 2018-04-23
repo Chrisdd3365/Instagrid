@@ -14,7 +14,7 @@
 		959A2E7020725C13003D0E62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959A2E6E20725C13003D0E62 /* LaunchScreen.storyboard */; };
 		959A2E7820725C2D003D0E62 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 959A2E7720725C2D003D0E62 /* ThirstySoftRegular.otf */; };
 		959A2E7A20725C3A003D0E62 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 959A2E7920725C39003D0E62 /* Delm-Medium.otf */; };
-		959D0DB12084F37400DFA434 /* UIImagePickerControllerLandscapeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959D0DB02084F37400DFA434 /* UIImagePickerControllerLandscapeMode.swift */; };
+		95BBA822208E289C002AE8D9 /* ImagePickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BBA821208E289C002AE8D9 /* ImagePickerExtension.swift */; };
 		95FB5A8C2080B42F000F3965 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FB5A8B2080B42F000F3965 /* GridView.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +28,7 @@
 		959A2E7120725C13003D0E62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		959A2E7720725C2D003D0E62 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		959A2E7920725C39003D0E62 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
-		959D0DB02084F37400DFA434 /* UIImagePickerControllerLandscapeMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImagePickerControllerLandscapeMode.swift; sourceTree = "<group>"; };
+		95BBA821208E289C002AE8D9 /* ImagePickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerExtension.swift; sourceTree = "<group>"; };
 		95FB5A8B2080B42F000F3965 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,7 +80,7 @@
 		959A2E7C20725CB8003D0E62 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				959D0DB02084F37400DFA434 /* UIImagePickerControllerLandscapeMode.swift */,
+				95BBA821208E289C002AE8D9 /* ImagePickerExtension.swift */,
 				959A2E6520725C13003D0E62 /* AppDelegate.swift */,
 				959A2E6C20725C13003D0E62 /* Assets.xcassets */,
 				959A2E6E20725C13003D0E62 /* LaunchScreen.storyboard */,
@@ -177,7 +177,7 @@
 				959A2E6820725C13003D0E62 /* ViewController.swift in Sources */,
 				95FB5A8C2080B42F000F3965 /* GridView.swift in Sources */,
 				959A2E6620725C13003D0E62 /* AppDelegate.swift in Sources */,
-				959D0DB12084F37400DFA434 /* UIImagePickerControllerLandscapeMode.swift in Sources */,
+				95BBA822208E289C002AE8D9 /* ImagePickerExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
