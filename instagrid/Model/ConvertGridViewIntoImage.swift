@@ -8,12 +8,14 @@
 
 import UIKit
 
-extension UIImage {
-    convenience init(_ view: GridView) {
-        UIGraphicsBeginImageContext(view.bounds.size)
-        view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+extension UIImage{
+    convenience init(view: GridView) {
+        
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: false)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        self.init(cgImage: (screenShot?.cgImage)!)
+        self.init(cgImage: (image?.cgImage)!)
+        
     }
 }

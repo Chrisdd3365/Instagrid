@@ -64,9 +64,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var imagePicker = UIImagePickerController()
     var tag = 0
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.changeSwipeLabelAndImage), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(changeSwipeLabelAndImage), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
@@ -103,16 +104,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func swipeToShare(_ sender: UIPanGestureRecognizer) {
         if gridView.topRightView.isHidden == true && gridView.topLeftImageView.image != nil && gridView.bottomLeftImageView.image != nil && gridView.bottomRightImageView.image != nil || gridView.bottomRightView.isHidden == true && gridView.bottomLeftImageView.image != nil && gridView.topLeftImageView.image != nil && gridView.topRightImageView.image != nil {
-            self.animationGridViewPortraitMode()
-            self.animationGridViewLandscapeMode()
-            self.showUIActivityViewController()
+            animationGridViewPortraitMode()
+            animationGridViewLandscapeMode()
+            showUIActivityViewController()
         }
         if gridView.topRightImageView.image == nil || gridView.topLeftImageView.image == nil || gridView.bottomLeftImageView.image == nil || gridView.bottomRightImageView.image == nil  {
             createAlertGridNotFull(title: "Choose your photos", message: "Your grid must be full of photos")
         } else {
-            self.animationGridViewPortraitMode()
-            self.animationGridViewLandscapeMode()
-            self.showUIActivityViewController()
+            animationGridViewPortraitMode()
+            animationGridViewLandscapeMode()
+            showUIActivityViewController()
         }
     }
     
