@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		956737AF208F4E90003A51BA /* RenderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956737AE208F4E90003A51BA /* RenderImage.swift */; };
 		959A2E6620725C13003D0E62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A2E6520725C13003D0E62 /* AppDelegate.swift */; };
 		959A2E6820725C13003D0E62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A2E6720725C13003D0E62 /* ViewController.swift */; };
 		959A2E6B20725C13003D0E62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959A2E6920725C13003D0E62 /* Main.storyboard */; };
@@ -14,12 +15,12 @@
 		959A2E7020725C13003D0E62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959A2E6E20725C13003D0E62 /* LaunchScreen.storyboard */; };
 		959A2E7820725C2D003D0E62 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 959A2E7720725C2D003D0E62 /* ThirstySoftRegular.otf */; };
 		959A2E7A20725C3A003D0E62 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 959A2E7920725C39003D0E62 /* Delm-Medium.otf */; };
-		95AA387B208E49570092A4C1 /* ConvertGridViewIntoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA387A208E49570092A4C1 /* ConvertGridViewIntoImage.swift */; };
 		95BBA822208E289C002AE8D9 /* ImagePickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BBA821208E289C002AE8D9 /* ImagePickerExtension.swift */; };
 		95FB5A8C2080B42F000F3965 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FB5A8B2080B42F000F3965 /* GridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		956737AE208F4E90003A51BA /* RenderImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderImage.swift; sourceTree = "<group>"; };
 		959A2E6220725C13003D0E62 /* instagrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instagrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		959A2E6520725C13003D0E62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		959A2E6720725C13003D0E62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,7 +30,6 @@
 		959A2E7120725C13003D0E62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		959A2E7720725C2D003D0E62 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		959A2E7920725C39003D0E62 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
-		95AA387A208E49570092A4C1 /* ConvertGridViewIntoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertGridViewIntoImage.swift; sourceTree = "<group>"; };
 		95BBA821208E289C002AE8D9 /* ImagePickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerExtension.swift; sourceTree = "<group>"; };
 		95FB5A8B2080B42F000F3965 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,7 +106,7 @@
 		95AA3879208E492B0092A4C1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				95AA387A208E49570092A4C1 /* ConvertGridViewIntoImage.swift */,
+				956737AE208F4E90003A51BA /* RenderImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,11 +185,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95AA387B208E49570092A4C1 /* ConvertGridViewIntoImage.swift in Sources */,
 				959A2E6820725C13003D0E62 /* ViewController.swift in Sources */,
 				95FB5A8C2080B42F000F3965 /* GridView.swift in Sources */,
 				959A2E6620725C13003D0E62 /* AppDelegate.swift in Sources */,
 				95BBA822208E289C002AE8D9 /* ImagePickerExtension.swift in Sources */,
+				956737AF208F4E90003A51BA /* RenderImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
