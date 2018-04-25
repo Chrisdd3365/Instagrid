@@ -73,6 +73,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
+        
+        let name = Notification.Name(rawValue: "renderImage")
+        NotificationCenter.default.addObserver(self, selector: #selector(gridView.asImage), name: name, object: nil)
     }
     
     @IBAction func chooseImage(_ sender: UIButton) {
@@ -135,6 +138,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.showGridViewPortraitMode()
                 self.showGridViewLandscapeMode()
             }
+        }
+        let vc = UIActivityViewController(activityItems: [chooseImage], applicationActivities: [])
+        vc.excludedActivityTypes =  [
+            UIActivityType.airDrop,
+            UIActivityType.assignToContact,
+            UIActivityType.addToReadingList,
+            UIActivityType.copyToPasteboard,
+            UIActivityType.mail,
+            UIActivityType.message,
+            UIActivityType.print,
+            UIActivityType.saveToCameraRoll
+        ]
+        present(vc,
+                animated: true,
+                completion: nil)
+        vc.popoverPresentationController?.sourceView = self.view
+        vc.completionWithItemsHandler = {(activity, success, items, error) in
         }
     }
     
