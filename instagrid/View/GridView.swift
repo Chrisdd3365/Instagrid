@@ -18,6 +18,7 @@ class GridView: UIView {
     @IBOutlet weak var bottomLeftImageView: UIImageView!
     @IBOutlet weak var bottomRightImageView: UIImageView!
     
+    //Method managing the setup of the layout 3
     func defaultView() {
         if topRightView.isHidden == true || bottomRightView.isHidden == true {
             topRightView.isHidden = false
@@ -28,6 +29,7 @@ class GridView: UIView {
         }
     }
     
+    //Method managing the setup of the layout 2
     func hiddenBottomRightView() {
         if bottomRightView.isHidden == false {
             bottomRightView.isHidden = true
@@ -37,6 +39,7 @@ class GridView: UIView {
         }
     }
     
+    //Method managing the setup of the layout 1
     func hiddenTopRightView() {
         if topRightView.isHidden == false {
             topRightView.isHidden = true
@@ -46,6 +49,7 @@ class GridView: UIView {
         }
     }
     
+    //Method managing the reset of the grid view
     func resetGrid() {
         topLeftImageView.image = nil
         topRightImageView.image = nil

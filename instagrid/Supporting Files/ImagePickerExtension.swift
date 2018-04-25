@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Extension managing the UIImagePickerController in landscape mode
 extension UIImagePickerController {
     open override var shouldAutorotate: Bool { return true }
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .all }

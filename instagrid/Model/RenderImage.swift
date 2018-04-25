@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Extension managing the convert of the grid view into an image
 extension UIView {
     @objc func asImage() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)

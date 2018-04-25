@@ -184,7 +184,7 @@
                                 </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nlb-JO-KtS">
-                                <rect key="frame" x="71.5" y="83" width="178" height="46"/>
+                                <rect key="frame" x="72" y="83" width="178" height="46"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flèche haut" translatesAutoresizingMaskIntoConstraints="NO" id="51E-3i-YhB">
                                         <rect key="frame" x="81.5" y="0.0" width="15" height="10"/>

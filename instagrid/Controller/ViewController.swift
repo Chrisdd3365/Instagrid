@@ -22,21 +22,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet weak var swipeDirectionImageView: UIImageView!
     
+    //IBAction of Layout 3 button
     @IBAction func defaultView(_ sender: Any) {
         gridView.defaultView()
         selectedImageDefaultViewButton()
     }
     
+    //IBAction of Layout 2 button
     @IBAction func hiddenBottomRightView(_ sender: Any) {
         gridView.hiddenBottomRightView()
         selectedImageHiddenBottomRightView()
     }
     
+    //IBAction of Layout 1 button
     @IBAction func hiddenTopRightView(_ sender: Any) {
         gridView.hiddenTopRightView()
         selectedImageHiddenTopRightView()
     }
     
+    //Method managing the selected image of Layout 3 button when pressed
     private func selectedImageDefaultViewButton() {
         if defaultViewButton.currentImage == nil {
             defaultViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
@@ -45,6 +49,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //Method managing the selected image of Layout 2 button when pressed
     private func selectedImageHiddenBottomRightView() {
         if hiddenBottomRightViewButton.currentImage == nil {
             hiddenBottomRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
@@ -53,6 +58,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //Method managing the selected image of Layout 1 button when pressed
     private func selectedImageHiddenTopRightView() {
         if hiddenTopRightViewButton.currentImage == nil {
             hiddenTopRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
@@ -63,7 +69,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var imagePicker = UIImagePickerController()
     var tag = 0
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +83,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NotificationCenter.default.addObserver(self, selector: #selector(gridView.asImage), name: name, object: nil)
     }
     
+    //IBAction of the 4 "plus" buttons in the grid, to choose photos from photoLibrary
     @IBAction func chooseImage(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
             tag = sender.tag
@@ -85,6 +91,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //Method managing the tags set on the 4 "plus" buttons, to call imagePickerController
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         
@@ -103,10 +110,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
     }
     
+    //Method managing imagePickerController when cancel it
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
     
+    //IBAction of the swipeToShare with UIPangestureRecognizer, managing the animations of the swipe through some conditions
     @IBAction func swipeToShare(_ sender: UIPanGestureRecognizer) {
         if gridView.topRightView.isHidden == true && gridView.topLeftImageView.image != nil && gridView.bottomLeftImageView.image != nil && gridView.bottomRightImageView.image != nil || gridView.bottomRightView.isHidden == true && gridView.bottomLeftImageView.image != nil && gridView.topLeftImageView.image != nil && gridView.topRightImageView.image != nil {
             animationGridViewPortraitMode()
@@ -122,10 +131,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //IBAction of the button "Reset Grid"
     @IBAction func resetGrid(_ sender: Any) {
         gridView.resetGrid()
     }
     
+    //Method managing the UIActivityViewController, to share with other apps
     private func showUIActivityViewController() {
         let image = UIImage()
         let activity = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil)
@@ -139,25 +150,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.showGridViewLandscapeMode()
             }
         }
-        let vc = UIActivityViewController(activityItems: [chooseImage], applicationActivities: [])
-        vc.excludedActivityTypes =  [
-            UIActivityType.airDrop,
-            UIActivityType.assignToContact,
-            UIActivityType.addToReadingList,
-            UIActivityType.copyToPasteboard,
-            UIActivityType.mail,
-            UIActivityType.message,
-            UIActivityType.print,
-            UIActivityType.saveToCameraRoll
-        ]
-        present(vc,
-                animated: true,
-                completion: nil)
-        vc.popoverPresentationController?.sourceView = self.view
-        vc.completionWithItemsHandler = {(activity, success, items, error) in
-        }
     }
     
+    //Method managing the animation of the grid in portrait mode
     private func animationGridViewPortraitMode() {
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
             let screenHeight = UIScreen.main.bounds.height
@@ -169,6 +164,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //Method managing the animation of the grid in landscape mode
     private func animationGridViewLandscapeMode() {
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
             let screenWidth = UIScreen.main.bounds.width
@@ -180,6 +176,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //Method managing the animation of the grid after sharing it, in portrait mode
     private func showGridViewPortraitMode() {
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
             let screenHeight = UIScreen.main.bounds.height
@@ -194,6 +191,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //Method managing the animation of the grid after sharing it, in landscape mode
     private func showGridViewLandscapeMode() {
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
             let screenWidth = UIScreen.main.bounds.width
@@ -208,6 +206,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
    
+    //Method managing an alert notification when user trying to share the grid uncompleted
     private func createAlertGridNotFull(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
@@ -215,6 +214,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(alert, animated: true, completion: nil )
     }
     
+    //Method managing the swipe direction image and the text of the label according to the deviece orientation
     @objc private func changeSwipeLabelAndImage(){
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
             swipeToShareLabel.text = "Swipe up to share"
