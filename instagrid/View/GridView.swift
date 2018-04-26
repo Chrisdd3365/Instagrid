@@ -10,14 +10,15 @@ import UIKit
 
 class GridView: UIView {
 
+    //MARK: - Outlets
     @IBOutlet weak var topRightView: UIView!
     @IBOutlet weak var bottomRightView: UIView!
- 
     @IBOutlet weak var topLeftImageView: UIImageView!
     @IBOutlet weak var topRightImageView: UIImageView!
     @IBOutlet weak var bottomLeftImageView: UIImageView!
     @IBOutlet weak var bottomRightImageView: UIImageView!
     
+    //MARK: - Class Methods
     //Method managing the setup of the layout 3
     func defaultView() {
         if topRightView.isHidden == true || bottomRightView.isHidden == true {
@@ -51,10 +52,7 @@ class GridView: UIView {
     
     //Method managing the reset of the grid view
     func resetGrid() {
-        topLeftImageView.image = nil
-        topRightImageView.image = nil
-        bottomLeftImageView.image = nil
-        bottomRightImageView.image = nil
+       [topLeftImageView, topRightImageView, bottomLeftImageView, bottomRightImageView].forEach { $0?.image = nil }
     }
 }
 

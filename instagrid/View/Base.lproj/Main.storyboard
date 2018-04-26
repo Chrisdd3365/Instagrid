@@ -181,6 +181,7 @@
                                     <outlet property="topLeftImageView" destination="7HO-IH-6D8" id="ZeT-hw-URt"/>
                                     <outlet property="topRightImageView" destination="BUe-CD-wH1" id="npS-2n-MfQ"/>
                                     <outlet property="topRightView" destination="0zv-ol-qwt" id="h0j-bO-1b2"/>
+                                    <outletCollection property="gestureRecognizers" destination="o9L-S5-rO5" appends="YES" id="e1p-In-EMp"/>
                                 </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nlb-JO-KtS">
@@ -197,9 +198,6 @@
                                     </label>
                                 </subviews>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="o9L-S5-rO5" appends="YES" id="4RG-b9-BwE"/>
-                                </connections>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GpU-8C-bdf">
                                 <rect key="frame" x="15" y="465" width="290" height="83"/>
@@ -339,7 +337,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="o9L-S5-rO5">
                     <connections>
-                        <action selector="swipeToShare:" destination="BYZ-38-t0r" id="pDN-He-uaK"/>
+                        <action selector="swipeToShare:" destination="BYZ-38-t0r" id="koV-Jy-4aX"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>

@@ -1,5 +1,5 @@
 //
-//  RenderImage.swift
+//  RenderImageService.swift
 //  instagrid
 //
 //  Created by Christophe DURAND on 24/04/2018.
@@ -10,7 +10,7 @@ import UIKit
 
 //Extension managing the convert of the grid view into an image
 extension UIView {
-    @objc func asImage() -> UIImage {
+    @objc func convertImage() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
         let name = Notification.Name(rawValue: "RenderImage")
         let notification = Notification(name: name)
