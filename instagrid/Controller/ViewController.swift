@@ -26,28 +26,23 @@ class ViewController: UIViewController {
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(changeSwipeLabelAndImage), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-        
-        
-        let name = Notification.Name(rawValue: "renderImage")
-        NotificationCenter.default.addObserver(self, selector: #selector(gridView.convertImage), name: name, object: nil)
+        notificationChangeSwipeLabelAndImage()
     }
     
     //MARK: - IBActions
-    //IBAction of Layout 1 button
+    //IBAction of the top Rectangular Grid View button
     @IBAction func hiddenTopRightView(_ sender: Any) {
         gridView.hiddenTopRightView()
         selectedImageHiddenTopRightView()
     }
     
-    //IBAction of Layout 2 button
+    //IBAction of the bottom Rectangular Grid View button
     @IBAction func hiddenBottomRightView(_ sender: Any) {
         gridView.hiddenBottomRightView()
         selectedImageHiddenBottomRightView()
     }
     
-    //IBAction of Layout 3 button
+    //IBAction of the default Grid View button
     @IBAction func defaultView(_ sender: Any) {
         gridView.defaultView()
         selectedImageDefaultViewButton()
@@ -71,7 +66,7 @@ class ViewController: UIViewController {
     
     //IBAction of the swipeToShare with UIPangestureRecognizer, managing the animations of the swipe through some conditions
     @IBAction func swipeToShare(_ sender: UIPanGestureRecognizer) {
-        if gridView.topRightView.isHidden == true && gridView.topLeftImageView.image != nil && gridView.bottomLeftImageView.image != nil && gridView.bottomRightImageView.image != nil || gridView.bottomRightView.isHidden == true && gridView.bottomLeftImageView.image != nil && gridView.topLeftImageView.image != nil && gridView.topRightImageView.image != nil {
+        if gridView.isAllowedToBeShared() {
             animationGridViewPortraitMode()
             animationGridViewLandscapeMode()
             showUIActivityViewController()
@@ -86,7 +81,7 @@ class ViewController: UIViewController {
     }
     
     //MARK: - Class Methods
-    //Method managing the selected image of Layout 3 button when pressed
+    //Method managing the selected image of the default grid view button when pressed it
     private func selectedImageDefaultViewButton() {
         if defaultViewButton.currentImage == nil {
             defaultViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
@@ -95,7 +90,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //Method managing the selected image of Layout 2 button when pressed
+    //Method managing the selected image of the bottom rectangular grid view button when pressed it
     private func selectedImageHiddenBottomRightView() {
         if hiddenBottomRightViewButton.currentImage == nil {
             hiddenBottomRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
@@ -104,7 +99,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //Method managing the selected image of Layout 1 button when pressed
+    //Method managing the selected image of the top rectangular grid view button when pressed it
     private func selectedImageHiddenTopRightView() {
         if hiddenTopRightViewButton.currentImage == nil {
             hiddenTopRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
@@ -115,8 +110,8 @@ class ViewController: UIViewController {
     
     //Method managing the UIActivityViewController, to share with other apps
     private func showUIActivityViewController() {
-        let image = UIImage()
-        let activity = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil)
+        guard let image = RenderImageService.convertGridViewToImage(gridView: gridView) else { return }
+        let activity = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         present(activity, animated: true, completion: nil)
         activity.completionWithItemsHandler = { (activityType, completed: Bool, returnedItems:[Any]?, error: Error?) in
             if completed == true {
@@ -192,16 +187,20 @@ class ViewController: UIViewController {
     }
     
     //Method managing the swipe direction image and the text of the label according to the deviece orientation
-    @objc private func changeSwipeLabelAndImage(){
+    @objc private func changeSwipeLabelAndImage() {
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
             swipeToShareLabel.text = "Swipe up to share"
-            swipeDirectionImageView.image = #imageLiteral(resourceName: "Flèche haut")
+            swipeDirectionImageView.image = #imageLiteral(resourceName: "UpArrow")
         }
-        
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
             swipeToShareLabel.text = "Swipe left to share"
-            swipeDirectionImageView.image = #imageLiteral(resourceName: "Flèche gauche")
+            swipeDirectionImageView.image = #imageLiteral(resourceName: "LeftArrow")
         }
+    }
+    
+    //Method managing the notification of the change swipe's label and image and calling it into viewDidLoad
+    private func notificationChangeSwipeLabelAndImage() {
+        NotificationCenter.default.addObserver(self, selector: #selector(changeSwipeLabelAndImage), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
 }
 

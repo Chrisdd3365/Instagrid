@@ -8,15 +8,13 @@
 
 import UIKit
 
-//Extension managing the convert of the grid view into an image
-extension UIView {
-    @objc func convertImage() -> UIImage {
-        let renderer = UIGraphicsImageRenderer(bounds: bounds)
-        let name = Notification.Name(rawValue: "RenderImage")
-        let notification = Notification(name: name)
-        NotificationCenter.default.post(notification)
-        return renderer.image { rendererContext in
-            layer.render(in: rendererContext.cgContext)
-        }
+//Class managing the conversion of the grid view into image
+class RenderImageService {
+    static func convertGridViewToImage(gridView: GridView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(gridView.bounds.size, gridView.isOpaque, 0.0)
+        gridView.drawHierarchy(in: gridView.bounds, afterScreenUpdates: true)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        UIGraphicsEndImageContext()
+        return image
     }
 }

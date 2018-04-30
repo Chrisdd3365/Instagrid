@@ -19,7 +19,7 @@ class GridView: UIView {
     @IBOutlet weak var bottomRightImageView: UIImageView!
     
     //MARK: - Class Methods
-    //Method managing the setup of the layout 3
+    //Method managing the setup of the default grid view
     func defaultView() {
         if topRightView.isHidden == true || bottomRightView.isHidden == true {
             topRightView.isHidden = false
@@ -30,7 +30,7 @@ class GridView: UIView {
         }
     }
     
-    //Method managing the setup of the layout 2
+    //Method managing the setup of the bottom rectangular grid view
     func hiddenBottomRightView() {
         if bottomRightView.isHidden == false {
             bottomRightView.isHidden = true
@@ -40,7 +40,7 @@ class GridView: UIView {
         }
     }
     
-    //Method managing the setup of the layout 1
+    //Method managing the setup of the top rectangular grid view
     func hiddenTopRightView() {
         if topRightView.isHidden == false {
             topRightView.isHidden = true
@@ -48,6 +48,33 @@ class GridView: UIView {
         } else {
             topRightView.isHidden = true
         }
+    }
+    
+    //Method managing to check if the setup of the top rectangular grid view or the bottom rectangular grid view is allowed to be shared
+    func isAllowedToBeShared() -> Bool {
+        var isAllowedToBeShared = false
+        if checkTopRectangularGridView() || checkBottomRectangularGridView() {
+            isAllowedToBeShared = true
+        }
+        return isAllowedToBeShared
+    }
+    
+    //Method managing to check if images into the setup of the top rectangular grid view are missing
+    private func checkTopRectangularGridView() -> Bool {
+        var topRectangularGridViewChecked = false
+        if topRightView.isHidden == true && topLeftImageView.image != nil && bottomLeftImageView.image != nil && bottomRightImageView.image != nil {
+            topRectangularGridViewChecked = true
+        }
+        return topRectangularGridViewChecked
+    }
+    
+    //Method managing to check if images into the setup of the bottom rectangular grid view are missing
+    private func checkBottomRectangularGridView() -> Bool {
+        var bottomRectangularGridViewChecked = false
+        if bottomRightView.isHidden == true && bottomLeftImageView.image != nil && topLeftImageView.image != nil && topRightImageView.image != nil {
+            bottomRectangularGridViewChecked = true
+        }
+        return bottomRectangularGridViewChecked
     }
     
     //Method managing the reset of the grid view
