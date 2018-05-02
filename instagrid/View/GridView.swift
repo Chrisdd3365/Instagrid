@@ -50,7 +50,7 @@ class GridView: UIView {
         }
     }
     
-    //Method managing to check if the setup of the top rectangular grid view or the bottom rectangular grid view is allowed to be shared
+    //Method checking if the setup of the top rectangular grid view or the bottom rectangular grid view is allowed to be shared
     func isAllowedToBeShared() -> Bool {
         var isAllowedToBeShared = false
         if checkTopRectangularGridView() || checkBottomRectangularGridView() {
@@ -59,7 +59,7 @@ class GridView: UIView {
         return isAllowedToBeShared
     }
     
-    //Method managing to check if images into the setup of the top rectangular grid view are missing
+    //Method checking if images into the setup of the top rectangular grid view are missing
     private func checkTopRectangularGridView() -> Bool {
         var topRectangularGridViewChecked = false
         if topRightView.isHidden == true && topLeftImageView.image != nil && bottomLeftImageView.image != nil && bottomRightImageView.image != nil {
@@ -68,13 +68,22 @@ class GridView: UIView {
         return topRectangularGridViewChecked
     }
     
-    //Method managing to check if images into the setup of the bottom rectangular grid view are missing
+    //Method checking if images into the setup of the bottom rectangular grid view are missing
     private func checkBottomRectangularGridView() -> Bool {
         var bottomRectangularGridViewChecked = false
         if bottomRightView.isHidden == true && bottomLeftImageView.image != nil && topLeftImageView.image != nil && topRightImageView.image != nil {
             bottomRectangularGridViewChecked = true
         }
         return bottomRectangularGridViewChecked
+    }
+    
+    //Method checking if images into the grid view are missing
+    func isNotAllowedToBeShared() -> Bool {
+        var isNotAllowedToBeShared = false
+        if topRightImageView.image == nil || topLeftImageView.image == nil || bottomLeftImageView.image == nil || bottomRightImageView.image == nil  {
+            isNotAllowedToBeShared = true
+        }
+        return isNotAllowedToBeShared
     }
     
     //Method managing the reset of the grid view

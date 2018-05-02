@@ -71,7 +71,7 @@ class ViewController: UIViewController {
             animationGridViewLandscapeMode()
             showUIActivityViewController()
         }
-        if gridView.topRightImageView.image == nil || gridView.topLeftImageView.image == nil || gridView.bottomLeftImageView.image == nil || gridView.bottomRightImageView.image == nil  {
+        if gridView.isNotAllowedToBeShared() {
             createAlertGridNotFull(title: "Choose your photos", message: "Your grid must be full of photos")
         } else {
             animationGridViewPortraitMode()
@@ -127,7 +127,7 @@ class ViewController: UIViewController {
     //Method managing the animation of the grid in portrait mode
     private func animationGridViewPortraitMode() {
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
-            let screenHeight = UIScreen.main.bounds.height
+            let screenHeight = view.frame.height
             var goingUpAnimation: CGAffineTransform
             goingUpAnimation = CGAffineTransform(translationX: 0, y: -screenHeight)
             
@@ -139,7 +139,7 @@ class ViewController: UIViewController {
     //Method managing the animation of the grid in landscape mode
     private func animationGridViewLandscapeMode() {
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
-            let screenWidth = UIScreen.main.bounds.width
+            let screenWidth = view.frame.width
             var goingLeftAnimation: CGAffineTransform
             goingLeftAnimation = CGAffineTransform(translationX: -screenWidth, y: 0)
             
@@ -151,7 +151,7 @@ class ViewController: UIViewController {
     //Method managing the animation of the grid after sharing it, in portrait mode
     private func showGridViewPortraitMode() {
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
-            let screenHeight = UIScreen.main.bounds.height
+            let screenHeight = view.frame.height
             
             gridView.transform = .identity
             gridView.transform = CGAffineTransform(translationX: 0, y: -screenHeight)
@@ -166,7 +166,7 @@ class ViewController: UIViewController {
     //Method managing the animation of the grid after sharing it, in landscape mode
     private func showGridViewLandscapeMode() {
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
-            let screenWidth = UIScreen.main.bounds.width
+            let screenWidth = view.frame.width
             
             gridView.transform = .identity
             gridView.transform = CGAffineTransform(translationX: -screenWidth, y: 0)
@@ -211,17 +211,17 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         
-        if tag == 1 {
-            gridView.topLeftImageView.image = pickedImage
-        }
-        if tag == 2 {
-            gridView.topRightImageView.image = pickedImage
-        }
-        if tag == 3 {
-            gridView.bottomLeftImageView.image = pickedImage
-        }
-        if tag == 4 {
-            gridView.bottomRightImageView.image = pickedImage
+        switch tag {
+            case 1:
+                gridView.topLeftImageView.image = pickedImage
+            case 2:
+                gridView.topRightImageView.image = pickedImage
+            case 3:
+                gridView.bottomLeftImageView.image = pickedImage
+            case 4:
+                gridView.bottomRightImageView.image = pickedImage
+            default:
+                break
         }
         dismiss(animated: true, completion: nil)
     }
