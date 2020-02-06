@@ -151,6 +151,7 @@
 				TargetAttributes = {
 					959A2E6120725C13003D0E62 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -346,7 +347,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.christophedurand.instagrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -363,7 +364,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.christophedurand.instagrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

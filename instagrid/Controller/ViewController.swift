@@ -55,7 +55,7 @@ class ViewController: UIViewController {
     
     //IBAction of the 4 "plus" buttons in the grid, to choose photos from photoLibrary
     @IBAction func chooseImage(_ sender: UIButton) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
             tag = sender.tag
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
@@ -84,27 +84,27 @@ class ViewController: UIViewController {
     //Method managing the selected image of the default grid view button when pressed it
     private func selectedImageDefaultViewButton() {
         if defaultViewButton.currentImage == nil {
-            defaultViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
-            hiddenBottomRightViewButton.setImage(nil, for: UIControlState.normal)
-            hiddenTopRightViewButton.setImage(nil, for: UIControlState.normal)
+            defaultViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControl.State.normal)
+            hiddenBottomRightViewButton.setImage(nil, for: UIControl.State.normal)
+            hiddenTopRightViewButton.setImage(nil, for: UIControl.State.normal)
         }
     }
     
     //Method managing the selected image of the bottom rectangular grid view button when pressed it
     private func selectedImageHiddenBottomRightView() {
         if hiddenBottomRightViewButton.currentImage == nil {
-            hiddenBottomRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
-            hiddenTopRightViewButton.setImage(nil, for: UIControlState.normal)
-            defaultViewButton.setImage(nil, for: UIControlState.normal)
+            hiddenBottomRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControl.State.normal)
+            hiddenTopRightViewButton.setImage(nil, for: UIControl.State.normal)
+            defaultViewButton.setImage(nil, for: UIControl.State.normal)
         }
     }
     
     //Method managing the selected image of the top rectangular grid view button when pressed it
     private func selectedImageHiddenTopRightView() {
         if hiddenTopRightViewButton.currentImage == nil {
-            hiddenTopRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControlState.normal)
-            hiddenBottomRightViewButton.setImage(nil, for: UIControlState.normal)
-            defaultViewButton.setImage(nil, for: UIControlState.normal)
+            hiddenTopRightViewButton.setImage(#imageLiteral(resourceName: "Selected"), for: UIControl.State.normal)
+            hiddenBottomRightViewButton.setImage(nil, for: UIControl.State.normal)
+            defaultViewButton.setImage(nil, for: UIControl.State.normal)
         }
     }
     
@@ -126,19 +126,19 @@ class ViewController: UIViewController {
     
     //Method managing the animation of the grid in portrait mode
     private func animationGridViewPortraitMode() {
-        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+        if UIDevice.current.orientation.isPortrait {
             let screenHeight = view.frame.height
             var goingUpAnimation: CGAffineTransform
             goingUpAnimation = CGAffineTransform(translationX: 0, y: -screenHeight)
             
-            UIView.animate(withDuration: 0.4, animations: { self.gridView.transform = goingUpAnimation}, completion: nil)
+            UIView.animate(withDuration: 0.4, animations: { self.gridView.transform = goingUpAnimation }, completion: nil)
             UIView.animate(withDuration: 0.4, animations: { self.swipeToShareStackView.transform = goingUpAnimation }, completion: nil)
         }
     }
     
     //Method managing the animation of the grid in landscape mode
     private func animationGridViewLandscapeMode() {
-        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+        if UIDevice.current.orientation.isLandscape {
             let screenWidth = view.frame.width
             var goingLeftAnimation: CGAffineTransform
             goingLeftAnimation = CGAffineTransform(translationX: -screenWidth, y: 0)
@@ -150,7 +150,7 @@ class ViewController: UIViewController {
     
     //Method managing the animation of the grid after sharing it, in portrait mode
     private func showGridViewPortraitMode() {
-        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+        if UIDevice.current.orientation.isPortrait {
             let screenHeight = view.frame.height
             
             gridView.transform = .identity
@@ -165,7 +165,7 @@ class ViewController: UIViewController {
     
     //Method managing the animation of the grid after sharing it, in landscape mode
     private func showGridViewLandscapeMode() {
-        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+        if UIDevice.current.orientation.isLandscape {
             let screenWidth = view.frame.width
             
             gridView.transform = .identity
@@ -180,19 +180,19 @@ class ViewController: UIViewController {
     
     //Method managing an alert notification when user trying to share the grid uncompleted
     private func createAlertGridNotFull(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil) }))
         self.present(alert, animated: true, completion: nil )
     }
     
     //Method managing the swipe direction image and the text of the label according to the deviece orientation
     @objc private func changeSwipeLabelAndImage() {
-        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+        if UIDevice.current.orientation.isPortrait {
             swipeToShareLabel.text = "Swipe up to share"
             swipeDirectionImageView.image = #imageLiteral(resourceName: "UpArrow")
         }
-        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+        if UIDevice.current.orientation.isLandscape {
             swipeToShareLabel.text = "Swipe left to share"
             swipeDirectionImageView.image = #imageLiteral(resourceName: "LeftArrow")
         }
@@ -200,7 +200,7 @@ class ViewController: UIViewController {
     
     //Method managing the notification of the change swipe's label and image and calling it into viewDidLoad
     private func notificationChangeSwipeLabelAndImage() {
-        NotificationCenter.default.addObserver(self, selector: #selector(changeSwipeLabelAndImage), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(changeSwipeLabelAndImage), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 }
 
@@ -208,20 +208,23 @@ class ViewController: UIViewController {
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //Method managing the tags set on the 4 "plus" buttons, to call imagePickerController
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        
+        let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
         
         switch tag {
-            case 1:
-                gridView.topLeftImageView.image = pickedImage
-            case 2:
-                gridView.topRightImageView.image = pickedImage
-            case 3:
-                gridView.bottomLeftImageView.image = pickedImage
-            case 4:
-                gridView.bottomRightImageView.image = pickedImage
-            default:
-                break
+        case 1:
+            gridView.topLeftImageView.image = pickedImage
+        case 2:
+            gridView.topRightImageView.image = pickedImage
+        case 3:
+            gridView.bottomLeftImageView.image = pickedImage
+        case 4:
+            gridView.bottomRightImageView.image = pickedImage
+        default:
+            break
         }
         dismiss(animated: true, completion: nil)
     }
@@ -232,3 +235,13 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+    return input.rawValue
+}
